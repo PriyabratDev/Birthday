@@ -35,6 +35,16 @@ export default function FinalMontage({ video }) {
   useEffect(() => {
     if (state === 1 && videoRef.current) videoRef.current.play();
   }, [state]);
+useEffect(() => {
+  if (!active) {
+    setState(0);
+    consumed.current = false;
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }
+}, [active]);
 
   return (
     <section ref={ref} className="story">

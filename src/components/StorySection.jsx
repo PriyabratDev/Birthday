@@ -8,12 +8,15 @@ export default function StorySection({ name, text, video }) {
   const [state, setState] = useState(0); // 0=intro, 1=name, 2=play, 3=done
   const consumedScroll = useRef(false);
 
-  // Detect entry
+  // Detect entry / exit
   useEffect(() => {
     const obs = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setActive(true),
+      ([entry]) => {
+        setActive(entry.isIntersecting);
+      },
       { threshold: 0.6 }
     );
+
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, []);
@@ -26,17 +29,20 @@ export default function StorySection({ name, text, video }) {
     }
   }, [active, state]);
 
-  // Scroll intent
+  // Scroll intent (only when active)
   useEffect(() => {
+    if (!active) return;
+
     function onScroll() {
-      if (!active) return;
       if (state === 1 && !consumedScroll.current) {
         consumedScroll.current = true;
         setState(2);
       }
     }
+
     window.addEventListener("wheel", onScroll, { passive: true });
     window.addEventListener("touchmove", onScroll, { passive: true });
+
     return () => {
       window.removeEventListener("wheel", onScroll);
       window.removeEventListener("touchmove", onScroll);
@@ -50,8 +56,21 @@ export default function StorySection({ name, text, video }) {
     else videoRef.current.pause();
   }, [state]);
 
+  // Reset when section exits
+  useEffect(() => {
+    if (!active) {
+      setState(0);
+      consumedScroll.current = false;
+
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.currentTime = 0;
+      }
+    }
+  }, [active]);
+
   return (
-    <section ref={ref} className="story">
+    <section ref={ref} className={`story ${active ? "active" : ""}`}>
       <video
         ref={videoRef}
         src={video}
@@ -61,14 +80,16 @@ export default function StorySection({ name, text, video }) {
         className={`bg-video ${state === 2 ? "playing" : ""}`}
       />
 
-      <div className="overlay">
-        {state === 0 && <p className="intro">{text}</p>}
-        {state >= 1 && (
-          <h1 className={`name ${state === 2 ? "subtitle" : ""}`}>
-            {name}
-          </h1>
-        )}
-      </div>
+      {active && (
+        <div className="overlay">
+          {state === 0 && <p className="intro">{text}</p>}
+          {state >= 1 && (
+            <h1 className={`name ${state === 2 ? "subtitle" : ""}`}>
+              {name}
+            </h1>
+          )}
+        </div>
+      )}
     </section>
   );
 }
