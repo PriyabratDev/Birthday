@@ -42,6 +42,7 @@ img, video {
     display: flex;
     align-items: center;
     justify-content: center;
+    isolation: isolate;
 }
 .center {
     text-align: center;
@@ -105,12 +106,19 @@ html,
 body {
     overscroll-behavior: none;
 }
-.story {
-  isolation: isolate;
-}
 .story:not(.active) .overlay {
   display: none;
 }
 html, body {
   overscroll-behavior: none;
+}
+.intro-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  position: relative; /* NOT sticky */
 }

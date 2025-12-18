@@ -22,19 +22,21 @@ export default function App() {
   return (
     <>
       {/* Initial Birthday Screen */}
-      <section className="story center">
-        <h1>Happy Birthday 🎉</h1>
-        <p>Keep scrolling</p>
-      </section>
+      <section className="intro-section center">
+  <h1>Happy Birthday 🎉</h1>
+  <br />
+  <p>Keep scrolling</p>
+</section>
 
       {/* Context Message */}
-      <section className="story center">
-        <p>
-          The following are messages and wishes from your family
-          and people who care deeply about you.
-        </p>
-        <p>Scroll to reveal the surprises.</p>
-      </section>
+      <section className="intro-section center">
+  <p>
+    The following are messages and wishes from your family
+    and people who care deeply about you.
+  </p>
+  <br />
+  <p>Scroll to reveal the surprises.</p>
+</section>
 
       {/* Family Sections */}
       <StorySection
