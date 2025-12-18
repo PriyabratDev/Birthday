@@ -4,9 +4,11 @@ import "./App.css";
 const wishes = [
   { name: "Mom", video: "/videos/mom.mp4" },
   { name: "Dad", video: "/videos/dad.mp4" },
-  { name: "Best Friend", video: "/videos/friend.mp4" },
+  { name: "Friend1", video: "/videos/friend1.mp4" },
+  { name: "Friend2", video: "/videos/friend2.mp4" },
+  { name: "Friend3", video: "/videos/friend3.mp4" },
   { name: "Brother", video: "/videos/brother.mp4" },
-  { name: "Girlfriend", video: "/videos/girlfriend.mp4" }
+  { name: "Bhauja", video: "/videos/bhauja.mp4" }
 ];
 
 export default function App() {
