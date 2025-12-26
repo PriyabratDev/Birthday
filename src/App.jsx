@@ -13,7 +13,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="loading">
-        <img src="/loading.gif" alt="loading" />
+        <img src="/loading.gif" />
         <p>Preparing something special…</p>
       </div>
     );
@@ -21,51 +21,29 @@ export default function App() {
 
   return (
     <>
-      {/* Initial Birthday Screen */}
-      <section className="intro-section center">
-  <h1>Happy Birthday 🎉</h1>
-  <br />
-  <p>Keep scrolling</p>
-</section>
+      {/* Initial screen */}
+      <section className="story center">
+        <h1>Happy Birthday 🎉</h1>
+        <p>Keep scrolling</p>
+      </section>
 
-      {/* Context Message */}
-      <section className="intro-section center">
-  <p>
-    The following are messages and wishes from your family
-    and people who care deeply about you.
-  </p>
-  <br />
-  <p>Scroll to reveal the surprises.</p>
-</section>
+      {/* Context screen */}
+      <section className="story center">
+        <p>
+          The following are messages and wishes from the people
+          who love you the most.
+        </p>
+        <p>Scroll to reveal the surprises.</p>
+      </section>
 
-      {/* Family Sections */}
-      <StorySection
-        name="Mom"
-        text="The quiet strength behind everything."
-        video="/videos/mom.mp4"
-      />
-      <StorySection
-        name="Dad"
-        text="Always present, even in silence."
-        video="/videos/dad.mp4"
-      />
-      <StorySection
-        name="Best Friend"
-        text="Chosen family matters."
-        video="/videos/friend.mp4"
-      />
-      <StorySection
-        name="Brother"
-        text="Built-in ally for life."
-        video="/videos/brother.mp4"
-      />
-      <StorySection
-        name="ahem ahem"
-        text="The one who knows your present."
-        video="/videos/bhauja.mp4"
-      />
+      {/* Family */}
+      <StorySection name="Mom" text="The quiet strength behind everything." video="/videos/mom.mp4" />
+      <StorySection name="Dad" text="Always present, even in silence." video="/videos/dad.mp4" />
+      <StorySection name="Best Friend" text="Chosen family matters." video="/videos/friend.mp4" />
+      <StorySection name="Brother" text="Built-in ally for life." video="/videos/brother.mp4" />
+      <StorySection name="Girlfriend" text="The one who knows your present." video="/videos/girlfriend.mp4" />
 
-      {/* Final Montage */}
+      {/* Final */}
       <FinalMontage video="/videos/montage.mp4" />
     </>
   );
